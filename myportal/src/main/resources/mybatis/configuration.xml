@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
+<<<<<<< HEAD
    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-config.dtd">
    
@@ -16,4 +17,10 @@
       <mapper resource="/mybatis/mappers/guestbook.xml" />
       <mapper resource="/mybatis/mappers/users.xml" />
    </mappers>
+=======
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+>>>>>>> 70b75c849c4b2f12831f2eb00f8186612ab277ff
 </configuration>
