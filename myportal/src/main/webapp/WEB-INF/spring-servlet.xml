@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-<<<<<<< HEAD
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:context="http://www.springframework.org/schema/context"
   xmlns:mvc="http://www.springframework.org/schema/mvc"
@@ -35,45 +34,11 @@
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		>
-=======
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans 
-       	   http://www.springframework.org/schema/beans/spring-beans.xsd
-           http://www.springframework.org/schema/context 
-           http://www.springframework.org/schema/context/spring-context.xsd
-           http://www.springframework.org/schema/mvc 
-           http://www.springframework.org/schema/mvc/spring-mvc.xsd
-           http://www.springframework.org/schema/aop 
-           http://www.springframework.org/schema/aop/spring-aop.xsd">           
-    <context:annotation-config />
-    <context:component-scan base-package="himedia.myportal.controllers">
-    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
-    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
-    </context:component-scan>
-    
-    <!-- 정적 자원의 요청을 디폴트 서블릿으로 위임 -->
-    <mvc:annotation-driven />
-    <mvc:default-servlet-handler />
-    
-    <!-- View Resolver -->
-    <bean id="viewResolver"
-    	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
->>>>>>> 70b75c849c4b2f12831f2eb00f8186612ab277ff
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
-<<<<<<< HEAD
 		<property name="order" value="1" />
 		
 	</bean>
-=======
-		<property name="order" value="1" />    	
-    </bean>
->>>>>>> 70b75c849c4b2f12831f2eb00f8186612ab277ff
 </beans>
