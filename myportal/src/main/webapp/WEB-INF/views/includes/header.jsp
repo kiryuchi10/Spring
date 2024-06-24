@@ -4,7 +4,7 @@
 <%@ page session="true" %>    
 	<div id="header">
       <h1>My Homepage</h1>
-      <p>authUser: ${authUser }</p>
+
       <c:choose>
       <c:when test="${not empty authUser }">
       <ul>
