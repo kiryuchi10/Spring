@@ -1,12 +1,9 @@
 package himedia.myportal.repositories.dao;
 
-import java.util.List;
-
 import himedia.myportal.repositories.vo.UserVo;
 
-
 public interface UserDao {
-	public List<UserVo> selectAll();
-	public UserVo selectUser(String name); // 게시물 작성
-	public UserVo selectPassword(String password);
+	public int insert(UserVo vo);	//	회원 가입
+	public UserVo selectUser(String email);	//	중복 이메일 체크
+	public UserVo selectUser(String email, String password);	//	로그인용
 }
