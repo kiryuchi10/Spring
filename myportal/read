@@ -1,0 +1,110 @@
+Spring MVC Application Workflow with @Autowired and Dispatcher Servlet
+1. Request Handling in Spring MVC
+DispatcherServlet Initialization:
+
+When a Spring MVC application starts, the DispatcherServlet is initialized. It acts as the front controller and is configured in web.xml or via Java configuration.
+xml
+코드 복사
+<servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+</servlet-mapping>
+Request Reception:
+
+When a user sends a request (e.g., accessing a URL like /boards), the DispatcherServlet receives the request and starts processing it.
+2. Handler Mapping and Controller Invocation
+Handler Mapping:
+
+The DispatcherServlet consults its handler mappings to determine which controller should handle the request. This is typically done using @RequestMapping annotations in the controller classes.
+java
+코드 복사
+@Controller
+public class BoardController {
+    @Autowired
+    private BoardService boardService;
+    
+    @RequestMapping("/boards")
+    public String list(Model model) {
+        List<BoardVo> boards = boardService.getList();
+        model.addAttribute("boards", boards);
+        return "board/list";
+    }
+}
+Controller Execution:
+
+The appropriate controller method is invoked. In this example, the list method of the BoardController is called.
+3. Service Layer Interaction
+Service Layer:
+
+Inside the controller method, the service layer is called to handle the business logic. The BoardServiceImpl class contains the business logic to interact with the DAO layer.
+java
+코드 복사
+@Service("boardService")
+public class BoardServiceImpl implements BoardService {
+    @Autowired
+    private BoardDao boardDao;
+
+    @Override
+    public List<BoardVo> getList() {
+        List<BoardVo> list = boardDao.selectAll();
+        return list;
+    }
+}
+4. DAO Layer and Persistence
+DAO Layer:
+
+The service layer interacts with the DAO layer to perform database operations. The BoardDaoImpl class interacts with the database using MyBatis.
+java
+코드 복사
+@Repository("boardDao")
+public class BoardDaoImpl implements BoardDao {
+    @Autowired
+    private SqlSession sqlSession;
+
+    @Override
+    public List<BoardVo> selectAll() {
+        List<BoardVo> list = sqlSession.selectList("board.selectAll");
+        return list;
+    }
+}
+Persistence Logic:
+
+The sqlSession.selectList("board.selectAll") method executes a SQL query to fetch all board entries from the database.
+5. Returning the Response
+View Resolution:
+
+After the controller method returns, the DispatcherServlet uses the view resolver to map the logical view name (e.g., "board/list") to a physical view (e.g., list.jsp).
+xml
+코드 복사
+<bean id="viewResolver"
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/views/" />
+    <property name="suffix" value=".jsp" />
+</bean>
+Rendering the View:
+
+The DispatcherServlet then renders the view and returns the response to the client.
+Role of @Autowired
+@Autowired Annotation:
+
+The @Autowired annotation is used by Spring to perform dependency injection. It tells Spring to automatically inject the appropriate bean into the annotated field.
+In DAO and Service:
+
+In the DAO layer, @Autowired injects the SqlSession bean, which is used to interact with the database.
+In the service layer, @Autowired injects the BoardDao bean, allowing the service layer to use the DAO methods to perform database operations.
+Example Breakdown
+DAO Implementation:
+
+The BoardDaoImpl class implements the BoardDao interface and uses SqlSession to interact with the database.
+The @Autowired annotation on sqlSession ensures that the SqlSession bean is injected by Spring.
+Service Implementation:
+
+The BoardServiceImpl class implements the BoardService interface and uses BoardDao to perform business logic.
+The @Autowired annotation on boardDao ensures that the BoardDao bean is injected by Spring.
+Conclusion
+This Spring MVC application workflow illustrates how a request is processed from the DispatcherServlet to the controller, service, and DAO layers, eventually returning a response to the client. The @Autowired annotation plays a crucial role in dependency injection, enabling the seamless integration of various components in the application.
