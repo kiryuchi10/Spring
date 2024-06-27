@@ -22,6 +22,8 @@ xml
     </servlet-mapping>
 </web-app>
 DispatcherServlet:
+![image](https://github.com/kiryuchi10/spring/assets/141597057/630ff2f2-90cf-48ae-91ee-fd937072f9cd)
+
 
 Acts as the front controller, handling all HTTP requests and responses. It looks up handler mappings to determine which controller method to invoke based on the request URI.
 Configured in web.xml, it initializes the Spring application context defined in applicationContext.xml or the corresponding Spring configuration.
@@ -43,6 +45,7 @@ URI Mapping and Request Handling:
 
 When a request is received, DispatcherServlet uses the URI to determine the appropriate controller to handle the request.
 Controllers:
+![image](https://github.com/kiryuchi10/spring/assets/141597057/83623465-deaf-454c-b015-23775cd9e22a)
 
 Annotated with @Controller, these handle web requests and return ModelAndView objects.
 Methods in controllers map to specific URIs using annotations like @RequestMapping.
@@ -130,6 +133,8 @@ The view is rendered and returned as an HTTP response to the client.
 Maven (pom.xml):
 Manages project dependencies, build configurations, and plugins.
 xml
+![image](https://github.com/kiryuchi10/spring/assets/141597057/0d31556b-3a9c-46b9-bcba-847cc52cd5dc)
+
 코드 복사
 <project ...>
     <dependencies>
