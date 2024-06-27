@@ -7,6 +7,9 @@ web.xml:
 This is the deployment descriptor for a Java web application. It defines the DispatcherServlet, which is the front controller in the Spring MVC architecture. It intercepts all incoming requests and routes them to appropriate handlers.
 xml
 코드 복사
+
+![image](https://github.com/kiryuchi10/spring/assets/141597057/17270e7c-2c73-4587-aa5c-d3f33e922b3c)
+
 <web-app>
     <servlet>
         <servlet-name>dispatcher</servlet-name>
