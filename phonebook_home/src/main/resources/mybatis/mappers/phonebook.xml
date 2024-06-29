@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="phonebook">
+  <select id="selectAll" resultType="PhonebookVo">
+    SELECT id, name, hp, tel
+    FROM phone_book
+    ORDER BY id
+  </select>
+  
+  <select id="selectListByKeyword" parameterType="String" resultType="PhonebookVo">
+    SELECT id, name, hp, tel
+    FROM phone_book
+    WHERE name LIKE '%' || ? || '%';
+  </select>
+  
+  
+  <select id="selectOne" parameterType="long" resultType="PhonebookVo">
+    SELECT id, name, hp, tel
+    FROM phone_book
+    WHERE id = #{ val }
+  </select>
+  
+   
+  
+  <insert id="insert" parameterType="PhonebookVo">
+    INSERT INTO phone_book(name, hp, tel)
+    VALUES(#{ name }, #{ hp }, #{ tel })
+  </insert>
+  
+  <delete id="delete" parameterType="PhonebookVo">
+  DELETE FROM phone_book
+  WHERE id = #{id}
+  </delete>
+  
+</mapper>
