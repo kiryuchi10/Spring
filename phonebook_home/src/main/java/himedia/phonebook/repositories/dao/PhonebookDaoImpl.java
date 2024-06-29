@@ -10,27 +10,30 @@ import himedia.phonebook.repositories.vo.PhonebookVo;
 
 @Repository("phonebookDao")
 public class PhonebookDaoImpl implements PhonebookDao {
+	private final SqlSession sqlSession;
+
 	@Autowired
-	private SqlSession sqlSession; 
-	
+	public PhonebookDaoImpl(SqlSession sqlSession) {
+		this.sqlSession = sqlSession;
+	}
+
 	@Override
 	public List<PhonebookVo> selectAll() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("phonebook.selectAll");
 	}
-	
+
 	@Override
 	public PhonebookVo selectOne(Long id) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("phonebook.selectOne", id);
 	}
-	
+
 	@Override
 	public List<PhonebookVo> selectListByKeyword(String keyword) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("phonebook.selectListByKeyword", keyword);
 	}
-
 
 	@Override
 	public int insert(PhonebookVo phonebookVo) {

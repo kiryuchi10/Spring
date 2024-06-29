@@ -14,7 +14,7 @@
 		resultType="PhonebookVo">
 		SELECT id, name, hp, tel
 		FROM phone_book
-		WHERE name LIKE '%' || #{keyword} || '%';
+		WHERE name LIKE CONCAT(CONCAT('%', #{keyword}), '%')
 	</select>
 
 
