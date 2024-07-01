@@ -48,22 +48,28 @@
     
     <!-- Interceptors -->
     <mvc:interceptors>
-	   <!--  <mvc:interceptor>
-	    	<mvc:mapping path ="/board/**"/>
-	    	<bean class="himedia.myportal.interceptors.MyInterceptor"/>
-	    </mvc:interceptor>
-   
-	    <mvc:interceptor>
-	    	<mvc:mapping path ="/board/**"/>
-	    	<bean class="himedia.myportal.interceptors.MyInterceptor2"/>
-	    </mvc:interceptor> -->
-	    
-	     <mvc:interceptor>
-	    	<mvc:mapping path ="/board/**"/>
-	    	<mvc:exclude-mapping path="/board"/>
-	    	<mvc:exclude-mapping path="/board/"/>
-	    	<mvc:exclude-mapping path="/board/list/**"/>
-	    	<bean class="himedia.myportal.interceptors.AuthInterceptor"/>
-	    </mvc:interceptor>
+    	<!-- mvc:interceptor>
+    		<mvc:mapping path="/board/**" />
+    		<bean class="himedia.myportal.interceptors.MyInterceptor" />
+    	</mvc:interceptor>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/board/**" />
+    		<bean class="himedia.myportal.interceptors.MyInterceptor2" />
+    	</mvc:interceptor -->
+    	<mvc:interceptor>
+    		<mvc:mapping path="/board/**" />
+    		<!-- 특정 URL의 배제할 때 -->
+    		<mvc:exclude-mapping path="/board" />
+    		<mvc:exclude-mapping path="/board/" />
+    		<mvc:exclude-mapping path="/board/list/**" />
+    		<bean class="himedia.myportal.interceptors.AuthInterceptor" />
+    	</mvc:interceptor>
     </mvc:interceptors>
+    
+    <!-- MultipartResolver -->
+    <bean id="multipartResolver"
+    	class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+    <!-- Resource Mapping -->
+    <mvc:resources mapping="/upload-images/**"
+    	location="file:c:/uploads"/>
 </beans>

@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 public class MyInterceptor implements HandlerInterceptor {
 	private static Logger logger =LoggerFactory.getLogger(MyInterceptor.class);
 	// URL 처리 핸들러 작동하기 이전에 호출
-	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.debug("MyInterceptor::preHandler");
@@ -39,9 +38,8 @@ public class MyInterceptor implements HandlerInterceptor {
 			logger.debug("Controller:" +controllerName+"Method:"+methodName);
 		}
 	}
-
-	// 뷰 렌더링 마친 이후
 	@Override
+	// 뷰 렌더링 마친 이후
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		logger.debug("MyInterceptor::afterCompletion");
