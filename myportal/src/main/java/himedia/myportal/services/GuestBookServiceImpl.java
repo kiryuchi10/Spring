@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 
 import himedia.myportal.repositories.dao.GuestbookDao;
 import himedia.myportal.repositories.vo.GuestbookVo;
-
 @Service("guestbookService")
-public class GuestBookServiceImpl implements GuestbookService {
+public class GuestbookServiceImpl implements GuestbookService {
 	@Autowired
 	GuestbookDao guestbookDao;
 	
@@ -27,9 +26,7 @@ public class GuestBookServiceImpl implements GuestbookService {
 
 	@Override
 	public boolean deleteMessage(GuestbookVo vo) {
-		
 		return 1 == guestbookDao.delete(vo);
 	}
-	
 
 }

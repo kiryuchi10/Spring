@@ -1,19 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix=c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>ÆÄÀÏ ¾÷·Îµå</title>
+<meta charset="UTF-8">
+<title>íŒŒì¼ ì—…ë¡œë“œ</title>
 </head>
 <body>
-<h1>ÆÄÀÏ ¾÷·Îµå</h1>
-<form method="post" action="<c:url value="fileupload/upload" />" enctype="multipart/form-data">
-    <label for="file">File:</label>
-    <input type="file" id="file" name="file" />
-    <br/>
-    <input type="submit" value="Upload" />
-</form>
+	<h1>íŒŒì¼ ì—…ë¡œë“œ</h1>
+	
+	<form method="post" 
+		action="<c:url value="/fileupload/upload" />"
+		enctype="multipart/form-data">
+		<label>File</label>
+		<input type="file" name="file1" />
+		<input type="submit" value="upload" />
+	
+	</form>
 </body>
 </html>

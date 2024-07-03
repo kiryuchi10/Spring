@@ -3,8 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>    
 	<div id="header">
+	  <c:if test="${not empty errorMsg }">
+	  <h5>${errorMsg }</h5>
+	  </c:if>
       <h1>My Homepage</h1>
-
+      <p>authUser: ${authUser }</p>
       <c:choose>
       <c:when test="${not empty authUser }">
       <ul>

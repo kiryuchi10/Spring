@@ -1,10 +1,14 @@
 package himedia.myportal.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import himedia.myportal.repositories.vo.UserVo;
 import himedia.myportal.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @RequestMapping("/users")
 @Controller
@@ -24,15 +29,30 @@ public class UsersController {
 	
 	//	가입 폼
 	@GetMapping({"", "/", "/join"})
-	public String join() {
+	public String join(@ModelAttribute UserVo userVo) {
+		userVo.setGender("F");
 		return "users/joinform";
 	}
 	
 	//	가입 처리(액션)
 	@PostMapping("/join")
-	public String join(@ModelAttribute UserVo userVo) {
+	public String join(@ModelAttribute @Valid UserVo userVo,
+			BindingResult result,
+			Model model
+			) {
 		System.out.println("회원 가입 폼: " + userVo);
 		
+		//	검증 결과 확인
+		if (result.hasErrors()) {
+			List<ObjectError> list = result.getAllErrors(); //	바인딩 오류 리스트
+			for (ObjectError e: list) {
+				System.err.println("Error:" + e);
+			}
+			model.addAllAttributes(result.getModel());
+			
+//			return "redirect:/user/join";
+			return "users/joinform";
+		}
 		boolean success = userService.join(userVo);
 		if (success) { //	가입 성공
 			//	가입 성공 페이지로 리다이렉트
@@ -96,15 +116,19 @@ public class UsersController {
 		
 		return "redirect:/";
 	}
-	// 중복 이메일 체크 (API)-> 응답을 json
-	@ResponseBody
+	
+	//	중복 이메일 체크 (API) -> 응답을 json
+	@ResponseBody	//	-> MessageConverter 사용
 	@RequestMapping("/checkEmail")
-	public Object checkEmail(@RequestParam(value="email",required=true,
-								defaultValue="") String email) {
-		// email이라는 파라미터 name을 String email에 할당
+	public Object checkEmail(@RequestParam(value="email", 
+										required=true,
+										defaultValue="") String email) {
 		UserVo vo = userService.getUser(email);
-		boolean exists=vo!=null? true:false;
-		Map<String,Object> json = new HashMap<>();
+		boolean exists = vo != null ? true: false;
+		
+		System.out.println("Controller UserVo: " + vo);
+		
+		Map<String, Object> json = new HashMap<>();
 		json.put("result", "success");
 		json.put("exists", exists);
 		

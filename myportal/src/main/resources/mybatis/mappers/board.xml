@@ -14,7 +14,7 @@
 	</insert>
 	
 	<!-- 목록 -->
-	<select id="selectAll" resultType="BoardVo">
+	<select id="selectAll" resultType="boardVo">
 	SELECT b.no,
 		b.title,
 		b.content,
@@ -28,7 +28,7 @@
 	</select>
 	
 	<!-- 게시물 읽기 -->
-	<select id="getContent" parameterType="long" resultType="BoardVo">
+	<select id="getContent" parameterType="long" resultType="boardVo">
 	SELECT b.no,
 		b.title,
 		b.content,
@@ -49,15 +49,15 @@
 	</update>
 	
 	<!-- 게시물 수정 -->
-	<update id="update" parameterType="BoardVo">
+	<update id="update" parameterType="boardVo">
 	UPDATE board
 	SET title=#{title}, content=#{content}
 	WHERE no=#{no}
 	</update>
-	<!-- 게시물 삭제 -->
-	<delete id="deleteByUserNo" parameterType="map" >
-		DELETE FROM board 
-		WHERE no = #{no} AND user_no = #{userNo}
-	</delete>	
 	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteByUserNo" parameterType="map">
+	DELETE FROM board
+	WHERE no = #{no} AND user_no = #{userNo}
+	</delete>
 </mapper>

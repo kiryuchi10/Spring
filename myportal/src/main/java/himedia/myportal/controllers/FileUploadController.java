@@ -16,21 +16,24 @@ public class FileUploadController {
 	@Autowired
 	FileUploadService fileUploadService;
 	
-	@RequestMapping({"","/form"})
+	//	업로드 폼
+	@RequestMapping({"", "/form"})
 	public String form() {
 		return "fileupload/form";
 	}
-	//업로드 액션
+
+	//	업로드 액션
 	@PostMapping("/upload")
-	public String upload(@RequestParam("file1") MultipartFile file1,Model model) {
-		System.out.println("원본파일명:"+file1.getOriginalFilename());
-		System.out.println("파일사이즈:"+file1.getSize());
-		System.out.println("파라미터 이름:"+file1.getName());
+	public String upload(@RequestParam("file1") MultipartFile file1,
+						Model model) {
+		System.out.println("원본파일명:" + file1.getOriginalFilename());
+		System.out.println("파일사이즈:" + file1.getSize());
+		System.out.println("파라미터 이름:" + file1.getName());
 		
-		String saveFilename=fileUploadService.store(file1);
-		model.addAttribute("imageFilename",saveFilename);
+		//	실제 파일로 저장
+		String saveFilename = fileUploadService.store(file1);
+		model.addAttribute("imageFilename", saveFilename);
 		
 		return "fileupload/result";
 	}
-	
 }

@@ -40,8 +40,8 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean delete(Long no, Long userNo) {
-		int deletedCount = boardDao.delete(no,userNo);
-		return deletedCount==1;
+		int deletedCount = boardDao.delete(no, userNo);
+		return deletedCount == 1;
 	}
 
 }

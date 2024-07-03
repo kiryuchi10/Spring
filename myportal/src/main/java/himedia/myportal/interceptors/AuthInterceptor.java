@@ -13,9 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class AuthInterceptor implements HandlerInterceptor {
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
-	
-	//	메서드 핸들러 작동 이전
 	@Override
+	//	메서드 핸들러 작동 이전
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.debug("AuthInterceptor");

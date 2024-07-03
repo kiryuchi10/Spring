@@ -3,14 +3,19 @@ package himedia.myportal.exceptions;
 import himedia.myportal.repositories.vo.UserVo;
 
 public class UserDaoException extends RuntimeException {
-	private UserVo userVo=null;
+	private UserVo userVo = null;
+
 	public UserDaoException() {
-		
+
 	}
-	
-	public UserDaoException(String message,UserVo userVO) {
+
+	public UserDaoException(String message) {
 		super(message);
-		this.userVo=userVo;	
+	}
+
+	public UserDaoException(String message, UserVo userVo) {
+		super(message);
+		this.userVo = userVo;
 	}
 
 	public UserVo getUserVo() {
@@ -20,4 +25,5 @@ public class UserDaoException extends RuntimeException {
 	public void setUserVo(UserVo userVo) {
 		this.userVo = userVo;
 	}
+
 }

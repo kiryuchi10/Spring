@@ -2,21 +2,26 @@ package himedia.myportal.exceptions;
 
 import himedia.myportal.repositories.vo.GuestbookVo;
 
-public class GuestbooKDaoException extends RuntimeException{
-	private GuestbookVo guestbookVo=null;
+public class GuestbookDaoException extends RuntimeException {
+	private GuestbookVo guestbookVo = null;
 	
-	public GuestbooKDaoException() {
+	//	생성자 
+	public GuestbookDaoException() {
 		
 	}
-	public GuestbooKDaoException(String message) {
+	
+	public GuestbookDaoException(String message) {
 		super(message);
 	}
-	public GuestbooKDaoException(String message, GuestbookVo vo) {
+	
+	public GuestbookDaoException(String message, GuestbookVo vo) {
 		super(message);
-		this.guestbookVo=vo;
+		this.guestbookVo = vo;
 	}
+
+	//	Getter 
 	public GuestbookVo getGuestbookVo() {
 		return guestbookVo;
 	}
-	
+
 }

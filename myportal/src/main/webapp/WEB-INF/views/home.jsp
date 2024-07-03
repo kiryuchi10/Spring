@@ -19,14 +19,9 @@
     	<c:param name="param1" value="value1" />
     	<c:param name="param2" value="value2" />
     </c:import>
-    <%--jsp:include page="/WEB-INF/views/includes/header.jsp">
-    	<jsp:param name="param1" value="value1" />
-    	<jsp:param name="param2" value="value2" />
-    </jsp:include --%>
 
 	<!-- navigation include -->
 	<c:import url="/WEB-INF/views/includes/navigation.jsp" />
-	<%--jsp:include page="/WEB-INF/views/includes/navigation.jsp" /--%>
     
 	<div id="wrapper">
       <div id="content">
